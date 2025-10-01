@@ -101,7 +101,7 @@ function enterNumber(value) {
         return;
     }
 
-    fetch(`/api/puzzles/${puzzleId}/move/`, {
+    fetch(`${apiBaseUrl}/${puzzleId}/move/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ function enterNumber(value) {
 
 // Check the solution
 function checkSolution() {
-    fetch(`/api/puzzles/${puzzleId}/check/`, {
+    fetch(`${apiBaseUrl}/${puzzleId}/check/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ function checkSolution() {
 
 // Get a hint
 function getHint() {
-    fetch(`/api/puzzles/${puzzleId}/hint/`, {
+    fetch(`${apiBaseUrl}/${puzzleId}/hint/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -190,7 +190,7 @@ function resetPuzzle() {
         return;
     }
 
-    fetch(`/api/puzzles/${puzzleId}/reset/`, {
+    fetch(`${apiBaseUrl}/${puzzleId}/reset/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -101,6 +101,22 @@ class TestPuzzlePlayView:
 
         assert response.status_code == 404
 
+    def test_puzzle_play_provides_api_base_url_in_template(self, client):
+        """
+        Test that play view template provides apiBaseUrl to JavaScript.
+
+        Regression test for bugs #8, #9, #10, #11.
+        JavaScript needs the correct API base URL to make fetch requests.
+        """
+        puzzle = Puzzle.objects.create(difficulty='easy')
+        response = client.get(reverse('sudoku:puzzle_play', args=[puzzle.id]))
+
+        assert response.status_code == 200
+        # Check that apiBaseUrl variable is defined in the page
+        assert b'apiBaseUrl' in response.content
+        # Check that it contains the API path
+        assert b'/api/puzzles' in response.content
+
 
 @pytest.mark.django_db
 class TestPuzzleDeleteView:

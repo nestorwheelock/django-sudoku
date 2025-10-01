@@ -36,6 +36,7 @@
     const puzzleId = {{ puzzle.id }};
     const initialPuzzle = {{ puzzle.puzzle|safe }};
     const currentState = {{ puzzle.current_state|safe }};
+    const apiBaseUrl = "{% url 'sudoku:puzzle_list' %}".replace(/\/$/, '') + '/api/puzzles';
 </script>
 {% endblock %}
 
