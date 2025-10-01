@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sudoku{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'sudoku/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Sudoku Puzzle Game</h1>
+        <nav>
+            <a href="{% url 'sudoku:puzzle_list' %}">My Puzzles</a>
+            <a href="{% url 'sudoku:puzzle_create' %}">New Puzzle</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Powered by django-sudoku</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

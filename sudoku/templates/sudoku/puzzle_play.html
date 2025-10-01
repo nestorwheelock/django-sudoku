@@ -1,0 +1,44 @@
+{% extends 'sudoku/base.html' %}
+{% load static %}
+
+{% block title %}Play Puzzle #{{ puzzle.id }} - Sudoku{% endblock %}
+
+{% block content %}
+<div class="puzzle-play">
+    <div class="puzzle-header">
+        <h2>Puzzle #{{ puzzle.id }}</h2>
+        <div class="puzzle-info">
+            <span class="difficulty">{{ puzzle.get_difficulty_display }}</span>
+            <span class="status">{{ puzzle.get_status_display }}</span>
+        </div>
+    </div>
+
+    <div class="puzzle-controls">
+        <button id="checkBtn" class="btn btn-primary">Check Solution</button>
+        <button id="hintBtn" class="btn btn-secondary">Get Hint</button>
+        <button id="resetBtn" class="btn btn-warning">Reset</button>
+        <a href="{% url 'sudoku:puzzle_list' %}" class="btn btn-back">Back to List</a>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <div class="sudoku-grid" id="sudokuGrid"></div>
+
+    <div class="number-pad">
+        {% for num in "123456789" %}
+            <button class="num-btn" data-value="{{ num }}">{{ num }}</button>
+        {% endfor %}
+        <button class="num-btn" data-value="0">Clear</button>
+    </div>
+</div>
+
+<script>
+    const puzzleId = {{ puzzle.id }};
+    const initialPuzzle = {{ puzzle.puzzle|safe }};
+    const currentState = {{ puzzle.current_state|safe }};
+</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'sudoku/sudoku.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'sudoku/base.html' %}
+{% load static %}
+
+{% block title %}Create Puzzle - Sudoku{% endblock %}
+
+{% block content %}
+<div class="puzzle-create">
+    <h2>Create New Sudoku Puzzle</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_difficulty">Choose Difficulty:</label>
+            {{ form.difficulty }}
+        </div>
+
+        {% if form.errors %}
+            <div class="errors">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Create Puzzle</button>
+        <a href="{% url 'sudoku:puzzle_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+
+    <div class="difficulty-info">
+        <h3>Difficulty Levels:</h3>
+        <ul>
+            <li><strong>Easy:</strong> 40-45 clues (great for beginners)</li>
+            <li><strong>Medium:</strong> 30-35 clues (moderate challenge)</li>
+            <li><strong>Hard:</strong> 25-30 clues (difficult)</li>
+            <li><strong>Expert:</strong> 22-25 clues (very challenging)</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -133,3 +133,39 @@ class PuzzleViewSet(viewsets.ModelViewSet):
             'message': 'Puzzle reset to initial state',
             'current_state': puzzle.current_state,
         })
+
+
+# Template-based views for web interface
+
+from django.views.generic import ListView, CreateView, DetailView, DeleteView
+from django.urls import reverse_lazy
+
+
+class PuzzleListView(ListView):
+    """List all Sudoku puzzles."""
+    model = Puzzle
+    template_name = 'sudoku/puzzle_list.html'
+    context_object_name = 'puzzles'
+
+
+class PuzzleCreateView(CreateView):
+    """Create a new Sudoku puzzle."""
+    model = Puzzle
+    template_name = 'sudoku/puzzle_create.html'
+    fields = ['difficulty']
+
+    def get_success_url(self):
+        return reverse_lazy('sudoku:puzzle_play', args=[self.object.id])
+
+
+class PuzzlePlayView(DetailView):
+    """Play a Sudoku puzzle."""
+    model = Puzzle
+    template_name = 'sudoku/puzzle_play.html'
+    context_object_name = 'puzzle'
+
+
+class PuzzleDeleteView(DeleteView):
+    """Delete a Sudoku puzzle."""
+    model = Puzzle
+    success_url = reverse_lazy('sudoku:puzzle_list')

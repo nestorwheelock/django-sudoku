@@ -1,0 +1,360 @@
+/* Sudoku Puzzle Game Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin-right: 1.5rem;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #3498db;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #7f8c8d;
+    margin-top: 3rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+.btn-warning {
+    background-color: #e67e22;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #d35400;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.btn-play {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-play:hover {
+    background-color: #229954;
+}
+
+.btn-back {
+    background-color: #34495e;
+    color: white;
+}
+
+.btn-back:hover {
+    background-color: #2c3e50;
+}
+
+/* Puzzle List */
+.puzzle-list {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.puzzles-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.puzzles-table th,
+.puzzles-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.puzzles-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.puzzles-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Puzzle Create */
+.puzzle-create {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.difficulty-info {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.difficulty-info ul {
+    list-style-position: inside;
+    margin-top: 0.5rem;
+}
+
+.difficulty-info li {
+    margin: 0.5rem 0;
+}
+
+/* Puzzle Play */
+.puzzle-play {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.puzzle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.puzzle-info span {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+}
+
+.puzzle-info .difficulty {
+    background-color: #3498db;
+    color: white;
+}
+
+.puzzle-info .status {
+    background-color: #27ae60;
+    color: white;
+}
+
+.puzzle-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.message {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    display: none;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    display: block;
+}
+
+/* Sudoku Grid */
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 0;
+    border: 3px solid #2c3e50;
+    margin: 1.5rem auto;
+    max-width: 450px;
+    background-color: #2c3e50;
+}
+
+.sudoku-cell {
+    aspect-ratio: 1;
+    border: 1px solid #bdc3c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.sudoku-cell:hover:not(.clue) {
+    background-color: #ecf0f1;
+}
+
+.sudoku-cell.clue {
+    background-color: #e8f4f8;
+    font-weight: 700;
+    color: #2c3e50;
+    cursor: default;
+}
+
+.sudoku-cell.selected {
+    background-color: #3498db;
+    color: white;
+}
+
+.sudoku-cell.error {
+    background-color: #fadbd8;
+    color: #c0392b;
+}
+
+/* Thick borders for 3x3 boxes */
+.sudoku-cell:nth-child(3n) {
+    border-right: 3px solid #2c3e50;
+}
+
+.sudoku-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 3px solid #2c3e50;
+}
+
+/* Number Pad */
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.num-btn {
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: 2px solid #3498db;
+    background-color: white;
+    color: #3498db;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.num-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.num-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .sudoku-cell {
+        font-size: 1.2rem;
+    }
+
+    .puzzle-controls {
+        flex-direction: column;
+    }
+
+    .puzzle-controls .btn {
+        width: 100%;
+    }
+}

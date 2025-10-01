@@ -1,0 +1,43 @@
+{% extends 'sudoku/base.html' %}
+{% load static %}
+
+{% block title %}My Puzzles - Sudoku{% endblock %}
+
+{% block content %}
+<div class="puzzle-list">
+    <h2>My Sudoku Puzzles</h2>
+
+    {% if puzzles %}
+        <table class="puzzles-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Difficulty</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for puzzle in puzzles %}
+                <tr>
+                    <td>{{ puzzle.id }}</td>
+                    <td>{{ puzzle.get_difficulty_display }}</td>
+                    <td>{{ puzzle.get_status_display }}</td>
+                    <td>{{ puzzle.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'sudoku:puzzle_play' puzzle.id %}" class="btn btn-play">Play</a>
+                        <form method="post" action="{% url 'sudoku:puzzle_delete' puzzle.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete" onclick="return confirm('Delete this puzzle?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No puzzles yet. <a href="{% url 'sudoku:puzzle_create' %}">Create your first puzzle!</a></p>
+    {% endif %}
+</div>
+{% endblock %}
