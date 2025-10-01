@@ -1,10 +1,11 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from .views import PuzzleViewSet
 
 app_name = "sudoku"
 
-# Router will be configured in T-003
 router = DefaultRouter()
+router.register(r'puzzles', PuzzleViewSet, basename='puzzle')
 
 urlpatterns = [
     path("api/", include(router.urls)),
